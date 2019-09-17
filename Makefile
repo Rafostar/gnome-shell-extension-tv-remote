@@ -4,8 +4,8 @@ UUID = tv-remote@rafostar.github.com
 GETTEXT = tv-remote
 PACKAGE = "TV Remote"
 TOLOCALIZE = remote.js devices.js prefs.js
-MSGSRC = $(wildcard ./po/tv-remote/*.po)
-POTFILE = ./po/tv-remote/tv-remote.pot
+MSGSRC = $(wildcard ./po/*.po)
+POTFILE = ./po/tv-remote.pot
 ZIPFILES = *.js *.json schemas locale COPYING README.md
 INSTALLPATH = ~/.local/share/gnome-shell/extensions
 
