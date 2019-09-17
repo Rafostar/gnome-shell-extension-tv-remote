@@ -57,6 +57,9 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 
 		this.updateList = (listObj) =>
 		{
+			if(this.menuDevices.length && !this.menu.isOpen)
+				return;
+
 			Object.keys(listObj).forEach(key =>
 			{
 				if(
@@ -64,6 +67,7 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 					&& typeof listObj[key] === 'object'
 					&& listObj[key].hasOwnProperty('osdString')
 					&& listObj[key].osdString !== 'CEC-WEB-API'
+					&& !this.menuDevices.some(element => element.devId === key)
 				) {
 					let device = new DevicesMenuItem(key, listObj[key]);
 
