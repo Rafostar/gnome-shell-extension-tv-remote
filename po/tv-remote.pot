@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the TV Remote package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TV Remote\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-17 23:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: remote.js:11 prefs.js:79
+msgid "TV Remote"
+msgstr ""
+
+#: devices.js:13
+msgid "Devices"
+msgstr ""
+
+#. TRANSLATORS: Undetected device name
+#: devices.js:101
+msgid "Unknown"
+msgstr ""
+
+#: prefs.js:60
+msgid "Device IP"
+msgstr ""
+
+#: prefs.js:68
+msgid "Listening port"
+msgstr ""
+
+#: prefs.js:83
+msgid "Remote position"
+msgstr ""
+
+#: prefs.js:85
+msgid "Left"
+msgstr ""
+
+#: prefs.js:86
+msgid "Center (left side)"
+msgstr ""
+
+#: prefs.js:87
+msgid "Center (right side)"
+msgstr ""
+
+#: prefs.js:88
+msgid "Right"
+msgstr ""
+
+#: prefs.js:94
+msgid "Show remote label"
+msgstr ""
+
+#: prefs.js:105
+msgid "CEC-Web-API GitHub page"
+msgstr ""
+
+#: prefs.js:112
+msgid "Extension Homepage"
+msgstr ""
