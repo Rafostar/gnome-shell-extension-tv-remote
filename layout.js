@@ -20,7 +20,7 @@ var remoteLayout =
 	[
 		{ icon: 'orientation-landscape-symbolic', action: 'red', color: 'OrangeRed' },
 		{ icon: 'orientation-landscape-symbolic', action: 'green', color: 'LawnGreen' },
-		{ icon: 'orientation-landscape-symbolic', action: 'yellow', color: 'Yellow' },
+		{ icon: 'orientation-landscape-symbolic', action: 'yellow', color: 'Gold' },
 		{ icon: 'orientation-landscape-symbolic', action: 'blue', color: 'LightSkyBlue' }
 	],
 	[
