@@ -1,0 +1,24 @@
+<schemalist gettext-domain="tv-remote">
+  <schema id="org.gnome.shell.extensions.tv-remote" path="/org/gnome/shell/extensions/tv-remote/">
+    <key name="cec-web-api-ip" type="s">
+      <default>""</default>
+      <summary>IP address of cec-web-api</summary>
+    </key>
+    <key name="cec-web-api-port" type="i">
+      <default>8080</default>
+      <summary>Port used in cec-web-api</summary>
+    </key>
+    <key name="tv-remote-position" type="s">
+      <default>"right"</default>
+      <summary>Position of TV remote button</summary>
+    </key>
+    <key name="show-remote-label" type="b">
+      <default>true</default>
+      <summary>Show label next to TV remote button</summary>
+    </key>
+    <key name="last-device" type="s">
+      <default>"dev0"</default>
+      <summary>Stores last used device ID</summary>
+    </key>
+  </schema>
+</schemalist>

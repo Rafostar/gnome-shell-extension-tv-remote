@@ -1,0 +1,17 @@
+{
+  "description": "Control TV and connected to it devices via HDMI-CEC.\n\nRequires HDMI-CEC capable device connected to TV (e.g. Raspberry Pi) with node `cec-web-api` installed and running.\n\nPlease use GitHub to report issues.", 
+  "extension-id": "tv-remote", 
+  "gettext-domain": "tv-remote", 
+  "name": "TV Remote", 
+  "settings-schema": "org.gnome.shell.extensions.tv-remote", 
+  "shell-version": [
+    "3.26", 
+    "3.28", 
+    "3.30", 
+    "3.32", 
+    "3.34"
+  ], 
+  "url": "https://github.com/Rafostar/gnome-shell-extension-tv-remote", 
+  "uuid": "tv-remote@rafostar.github.com", 
+  "version": 1
+}
