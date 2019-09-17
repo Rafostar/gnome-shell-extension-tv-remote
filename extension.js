@@ -6,8 +6,6 @@ Extension GitHub: https://github.com/Rafostar/gnome-shell-extension-tv-remote
 
 const Main = imports.ui.main;
 const Local = imports.misc.extensionUtils.getCurrentExtension();
-const Gettext = imports.gettext.domain(Local.metadata['gettext-domain']);
-const _ = Gettext.gettext;
 const Convenience = Local.imports.convenience;
 const Settings = Convenience.getSettings();
 const { TvRemoteMenu, webConfig } = Local.imports.remote;

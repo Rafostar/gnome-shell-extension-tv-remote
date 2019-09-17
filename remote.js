@@ -20,7 +20,7 @@ var TvRemoteMenu = class extends PanelMenu.Button
 {
 	constructor()
 	{
-		super(0.5, REMOTE_LABEL, false);
+		super(0.5, _(REMOTE_LABEL), false);
 
 		this.box = new St.BoxLayout();
 		this.icon = new St.Icon({
@@ -28,7 +28,7 @@ var TvRemoteMenu = class extends PanelMenu.Button
 			style_class: 'system-status-icon'
 		});
 		this.toplabel = new St.Label({
-			text: REMOTE_LABEL,
+			text: _(REMOTE_LABEL),
 			y_expand: true,
 			y_align: Clutter.ActorAlign.CENTER
 		});
@@ -65,24 +65,19 @@ var TvRemoteMenu = class extends PanelMenu.Button
 
 			this._soupSession.queue_message(message, () =>
 			{
-				let getRespObj = () =>
-				{
-					let respObj = {};
+				let respObj = {};
 
-					if(
-						typeof message === 'object'
-						&& message.response_body
-						&& typeof message.response_body === 'object'
-						&& message.response_body.data
-					) {
-						try { respObj = JSON.parse(message.response_body.data); }
-						catch(err) {}
-					}
-
-					return respObj;
+				if(
+					typeof message === 'object'
+					&& message.response_body
+					&& typeof message.response_body === 'object'
+					&& message.response_body.data
+				) {
+					try { respObj = JSON.parse(message.response_body.data); }
+					catch(err) {}
 				}
 
-				return cb(getRespObj());
+				return cb(respObj);
 			});
 		}
 
@@ -200,11 +195,10 @@ class RemoteButton extends St.Button
 			child: buttonChild
 		});
 
-		let callback = () => this.opacity = !this.reactive ? 30 : this.hover ? 255 : 130;
+		let callback = () => this.opacity = (this.hover) ? 255 : 130;
 
 		this.signalIds = [
 			this.connect('notify::hover', callback),
-			this.connect('notify::reactive', callback),
 			this.connect('destroy', () => {
 				this.signalIds.forEach(signalId => this.disconnect(signalId));
 			})

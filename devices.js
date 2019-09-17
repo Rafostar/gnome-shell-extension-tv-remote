@@ -97,6 +97,7 @@ class DevicesMenuItem extends PopupMenu.PopupImageMenuItem
 {
 	constructor(devId, opts)
 	{
+		/* TRANSLATORS: Undetected device name */
 		opts.name = opts.name || _("Unknown");
 
 		super(opts.name, '');
