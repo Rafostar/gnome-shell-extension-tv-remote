@@ -59,7 +59,7 @@ class TvRemoteSettings extends Gtk.VBox
 		/* CEC-Web-API Device IP */
 		label = new SettingLabel(_("Device IP"));
 		widget = new Gtk.Entry({halign:Gtk.Align.END});
-		widget.set_placeholder_text("192.168.0.1");
+		widget.set_placeholder_text('127.0.0.1');
 		Settings.bind('cec-web-api-ip', widget, 'text', Gio.SettingsBindFlags.DEFAULT);
 		grid.attach(label, 0, 1, 1, 1);
 		grid.attach(widget, 1, 1, 1, 1);
