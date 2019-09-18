@@ -1,5 +1,5 @@
 {
-  "description": "Control TV and connected to it devices via HDMI-CEC.\n\nRequires HDMI-CEC capable device connected to TV (e.g. Raspberry Pi) with node `cec-web-api` installed and running.\nAfter installing set the IP and port of API hosting device in extension preferences.\n\nPlease use GitHub to report issues.", 
+  "description": "Control TV and devices connected to it via HDMI-CEC.\n\nRequires HDMI-CEC capable device connected to TV (e.g. Raspberry Pi) with node `cec-web-api` installed and running.\nAfter installing set the IP and port of API hosting device in extension preferences.\n\nPlease use GitHub to report issues.", 
   "extension-id": "tv-remote", 
   "gettext-domain": "tv-remote", 
   "name": "TV Remote", 
