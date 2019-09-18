@@ -1,10 +1,9 @@
-const { Clutter } = imports.gi;
 const PopupMenu = imports.ui.popupMenu;
 const Local = imports.misc.extensionUtils.getCurrentExtension();
 const Gettext = imports.gettext.domain(Local.metadata['gettext-domain']);
 const _ = Gettext.gettext;
-
-const ACTIVE_DEVICE_ICON = 'input-dialpad-symbolic';
+const Compat = Local.imports.compat;
+const { DevicesMenuItem } = Compat;
 
 var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 {
@@ -14,8 +13,11 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 
 		this.icon.icon_name = 'view-list-symbolic';
 		this.menuDevices = [];
-
 		this.activeDevId = 'dev0';
+
+		this.tempMenuItem = new PopupMenu.PopupMenuItem(_("No devices"));
+		this.tempMenuItem.setSensitive(false);
+		this.menu.addMenuItem(this.tempMenuItem);
 
 		let callback = () =>
 		{
@@ -38,12 +40,12 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 			this.connect('notify::hover', callback);
 		}
 
-		this.updateActiveDev = (source, data) =>
+		this.updateActiveDev = (source, event) =>
 		{
 			if(
-				data
-				&& typeof data === 'object'
-				&& data.hasOwnProperty('devId')
+				source
+				&& typeof source === 'object'
+				&& source.hasOwnProperty('devId')
 			) {
 				this.menuDevices.forEach(menuDevice =>
 				{
@@ -51,15 +53,12 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 						menuDevice._icon.icon_name = '';
 				});
 
-				this.activeDevId = data.devId;
+				this.activeDevId = source.devId;
 			}
 		}
 
 		this.updateList = (listObj) =>
 		{
-			if(this.menuDevices.length && !this.menu.isOpen)
-				return;
-
 			Object.keys(listObj).forEach(key =>
 			{
 				if(
@@ -72,52 +71,31 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 					let device = new DevicesMenuItem(key, listObj[key]);
 
 					if(key === this.activeDevId)
-						device._icon.icon_name = ACTIVE_DEVICE_ICON;
+						device._icon.icon_name = Compat.activeDeviceIcon;
 
 					device.signalIds.push(
-						device.connect('button-release-event', this.updateActiveDev.bind(this))
+						device.connect(Compat.usedSignal, this.updateActiveDev.bind(this))
 					);
 
 					this.menuDevices.push(device);
 					this.menu.addMenuItem(device);
 				}
 			});
+
+			if(this.tempMenuItem && this.menuDevices.length > 0)
+			{
+				this.tempMenuItem.destroy();
+				this.tempMenuItem = null;
+			}
 		}
 	}
 
 	destroy()
 	{
+		if(this.tempMenuItem)
+			this.tempMenuItem.destroy();
+
 		this.menuDevices.forEach(menuDevice => menuDevice.destroy());
-
-		super.destroy();
-	}
-}
-
-class DevicesMenuItem extends PopupMenu.PopupImageMenuItem
-{
-	constructor(devId, opts)
-	{
-		/* TRANSLATORS: Undetected device name */
-		opts.name = opts.name || _("Unknown");
-
-		super(opts.name, '');
-
-		this.devId = devId;
-		this.signalIds = [];
-	}
-
-	_onButtonReleaseEvent(actor, event)
-	{
-		actor.remove_style_pseudo_class('active');
-		this._icon.icon_name = ACTIVE_DEVICE_ICON;
-		this.emit('button-release-event', { devId : this.devId });
-
-		return Clutter.EVENT_STOP;
-	}
-
-	destroy()
-	{
-		this.signalIds.forEach(signalId => this.disconnect(signalId));
 
 		super.destroy();
 	}

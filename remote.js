@@ -6,6 +6,7 @@ const Gettext = imports.gettext.domain(Local.metadata['gettext-domain']);
 const _ = Gettext.gettext;
 const Layout = Local.imports.layout;
 const { DevicesSubMenu } = Local.imports.devices;
+const { PopupBase } = Local.imports.compat;
 const noop = () => {};
 
 const REMOTE_LABEL = _("TV Remote");
@@ -127,7 +128,10 @@ var TvRemoteMenu = class extends PanelMenu.Button
 			});
 		}
 
-		this.openSignal = this.devicesMenu.menu.connect('open-state-changed', this.getDevices.bind(this));
+		this.openSignal = this.devicesMenu.menu.connect('open-state-changed', (source, isOpen) =>
+		{
+			if(isOpen) this.getDevices();
+		});
 	}
 
 	destroy()
@@ -136,19 +140,6 @@ var TvRemoteMenu = class extends PanelMenu.Button
 		this.remoteButtons.forEach(remoteButton => remoteButton.destroy());
 
 		super.destroy();
-	}
-}
-
-class PopupBase extends PopupMenu.PopupBaseMenuItem
-{
-	constructor()
-	{
-		super({ hover: false, reactive: true });
-
-		if(this.hasOwnProperty('actor'))
-			this.actor.add_style_pseudo_class = () => { return null };
-		else
-			this.add_style_pseudo_class = () => { return null };
 	}
 }
 
