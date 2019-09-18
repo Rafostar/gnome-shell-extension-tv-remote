@@ -1,5 +1,6 @@
 # Basic Makefile
 
+EXTNAME = gnome-shell-extension-tv-remote
 UUID = tv-remote@rafostar.github.com
 GETTEXT = tv-remote
 PACKAGE = "TV Remote"
@@ -36,24 +37,23 @@ zip-file: _build
 	zip -qr $(UUID).zip $(ZIPFILES)
 
 # Build and install #
-install:
-	ifeq ($(CUSTOMPATH),)
-		_local-install
-	else
-		_global-install
-	endif
-
-_local-install: _build
+install: compilemo
+ifeq ($(CUSTOMPATH),)
+	glib-compile-schemas ./schemas/
 	mkdir -p $(INSTALLPATH)/$(UUID)
 	cp -r $(ZIPFILES) $(INSTALLPATH)/$(UUID)
-
-_global-install: compilemo
+else
 	mkdir -p $(CUSTOMPATH)/$(UUID)
-	cp -r $(filter-out schemas locale, $(ZIPFILES)) $(CUSTOMPATH)/$(UUID)
+	cp -r $(filter-out schemas locale README.md COPYING, $(ZIPFILES)) $(CUSTOMPATH)/$(UUID)
 	mkdir -p /usr/share/glib-2.0/schemas
 	cp -r ./schemas/*.gschema.* /usr/share/glib-2.0/schemas/
 	mkdir -p /usr/share/locale
 	cp -r ./locale/* /usr/share/locale/
+	mkdir -p /usr/share/doc/$(EXTNAME)
+	cp ./README.md /usr/share/doc/$(EXTNAME)/
+	mkdir -p /usr/share/licenses/$(EXTNAME)
+	cp ./COPYING /usr/share/licenses/$(EXTNAME)/
+endif
 
 _build: glib-schemas compilemo
 
