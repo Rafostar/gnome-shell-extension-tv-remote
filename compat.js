@@ -19,6 +19,7 @@ var DevicesMenuItem = (GNOME_MINOR_VER >= 31) ?
 	{
 		_init(devId, opts)
 		{
+			/* TRANSLATORS: Undetected device name */
 			opts.name = opts.name || _("Unknown");
 
 			super._init(opts.name, '');
@@ -37,7 +38,6 @@ var DevicesMenuItem = (GNOME_MINOR_VER >= 31) ?
 	{
 		constructor(devId, opts)
 		{
-			/* TRANSLATORS: Undetected device name */
 			opts.name = opts.name || _("Unknown");
 
 			super(opts.name, '');

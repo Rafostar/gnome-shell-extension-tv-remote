@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TV Remote\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-17 23:12+0200\n"
+"POT-Creation-Date: 2019-09-19 09:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: remote.js:11 prefs.js:79
+#: remote.js:12 prefs.js:79
 msgid "TV Remote"
 msgstr ""
 
-#: devices.js:13
+#: devices.js:12
 msgid "Devices"
 msgstr ""
 
+#: devices.js:18
+msgid "No devices"
+msgstr ""
+
 #. TRANSLATORS: Undetected device name
-#: devices.js:101
+#: compat.js:23 compat.js:41
 msgid "Unknown"
 msgstr ""
 

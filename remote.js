@@ -21,7 +21,7 @@ var TvRemoteMenu = class extends PanelMenu.Button
 {
 	constructor()
 	{
-		super(0.5, _(REMOTE_LABEL), false);
+		super(0.5, REMOTE_LABEL, false);
 
 		this.box = new St.BoxLayout();
 		this.icon = new St.Icon({
