@@ -88,15 +88,15 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 				this.tempMenuItem = null;
 			}
 		}
-	}
 
-	destroy()
-	{
-		if(this.tempMenuItem)
-			this.tempMenuItem.destroy();
+		this.destroy = () =>
+		{
+			if(this.tempMenuItem)
+				this.tempMenuItem.destroy();
 
-		this.menuDevices.forEach(menuDevice => menuDevice.destroy());
+			this.menuDevices.forEach(menuDevice => menuDevice.destroy());
 
-		super.destroy();
+			super.destroy();
+		}
 	}
 }

@@ -125,11 +125,6 @@ class TvRemoteSettings extends Gtk.VBox
 		box.pack_start(this.extLinkButton, false, false, 0);
 		this.pack_end(box, false, false, 0);
 	}
-
-	destroy()
-	{
-		super.destroy();
-	}
 }
 
 function buildPrefsWidget()

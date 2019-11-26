@@ -22,12 +22,12 @@ var DevicesMenuItem = (IS_OLD_SHELL) ?
 
 			this.devId = devId;
 			this.signalIds = [];
-		}
 
-		destroy()
-		{
-			this.signalIds.forEach(signalId => this.disconnect(signalId));
-			super.destroy();
+			this.destroy = () =>
+			{
+				this.signalIds.forEach(signalId => this.disconnect(signalId));
+				super.destroy();
+			}
 		}
 	} :
 	GObject.registerClass({

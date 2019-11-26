@@ -132,14 +132,14 @@ var TvRemoteMenu = class extends PanelMenu.Button
 		{
 			if(isOpen) this.getDevices();
 		});
-	}
 
-	destroy()
-	{
-		this.devicesMenu.menu.disconnect(this.openSignal);
-		this.remoteButtons.forEach(remoteButton => remoteButton.destroy());
+		this.destroy = () =>
+		{
+			this.devicesMenu.menu.disconnect(this.openSignal);
+			this.remoteButtons.forEach(remoteButton => remoteButton.destroy());
 
-		super.destroy();
+			super.destroy();
+		}
 	}
 }
 
