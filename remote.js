@@ -6,7 +6,7 @@ const Gettext = imports.gettext.domain(Local.metadata['gettext-domain']);
 const _ = Gettext.gettext;
 const Layout = Local.imports.layout;
 const { DevicesSubMenu } = Local.imports.devices;
-const { PopupBase } = Local.imports.compat;
+const { TvPopupBase } = Local.imports.compat;
 const noop = () => {};
 
 const REMOTE_LABEL = _("TV Remote");
@@ -85,7 +85,7 @@ var TvRemoteMenu = class extends PanelMenu.Button
 		/* Assemble remote controls */
 		Layout.remoteLayout.forEach(row =>
 		{
-			let popupBase = new PopupBase();
+			let popupBase = new TvPopupBase();
 			let buttonsBox = new St.BoxLayout({
 				x_align: Clutter.ActorAlign.CENTER,
 				x_expand: true

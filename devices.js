@@ -3,7 +3,7 @@ const Local = imports.misc.extensionUtils.getCurrentExtension();
 const Gettext = imports.gettext.domain(Local.metadata['gettext-domain']);
 const _ = Gettext.gettext;
 const Compat = Local.imports.compat;
-const { DevicesMenuItem } = Compat;
+const { TvDevicesMenuItem } = Compat;
 
 var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 {
@@ -75,7 +75,7 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 					&& listObj[key].osdString !== 'CEC-WEB-API'
 					&& !this.menuDevices.some(element => element.devId === key)
 				) {
-					let device = new DevicesMenuItem(key, listObj[key]);
+					let device = new TvDevicesMenuItem(key, listObj[key]);
 
 					if(key === this.activeDevId)
 						device._icon.icon_name = Compat.activeDeviceIcon;

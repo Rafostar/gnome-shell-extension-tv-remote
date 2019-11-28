@@ -10,8 +10,8 @@ const IS_OLD_SHELL = (Config.PACKAGE_VERSION.split('.')[1] < 33);
 var usedSignal = (IS_OLD_SHELL) ? 'button-release-event' : 'device-changed';
 var activeDeviceIcon = 'input-dialpad-symbolic';
 
-var DevicesMenuItem = (IS_OLD_SHELL) ?
-	class extends PopupMenu.PopupImageMenuItem
+var TvDevicesMenuItem = (IS_OLD_SHELL) ?
+	class TvDevicesMenuItem extends PopupMenu.PopupImageMenuItem
 	{
 		constructor(devId, opts)
 		{
@@ -34,7 +34,7 @@ var DevicesMenuItem = (IS_OLD_SHELL) ?
 		Signals: { [usedSignal]: { param_types: [Clutter.Event.$gtype] }
 		}
 	},
-	class extends PopupMenu.PopupImageMenuItem
+	class TvDevicesMenuItem extends PopupMenu.PopupImageMenuItem
 	{
 		_init(devId, opts)
 		{
@@ -53,7 +53,7 @@ var DevicesMenuItem = (IS_OLD_SHELL) ?
 		}
 	});
 
-DevicesMenuItem.prototype._onButtonReleaseEvent = function(actor, event)
+TvDevicesMenuItem.prototype._onButtonReleaseEvent = function(actor, event)
 {
 	actor.remove_style_pseudo_class('active');
 	this._icon.icon_name = activeDeviceIcon;
@@ -62,8 +62,8 @@ DevicesMenuItem.prototype._onButtonReleaseEvent = function(actor, event)
 	return Clutter.EVENT_STOP;
 }
 
-var PopupBase = (IS_OLD_SHELL) ?
-	class extends PopupMenu.PopupBaseMenuItem
+var TvPopupBase = (IS_OLD_SHELL) ?
+	class TvPopupBase extends PopupMenu.PopupBaseMenuItem
 	{
 		constructor()
 		{
@@ -72,7 +72,7 @@ var PopupBase = (IS_OLD_SHELL) ?
 		}
 	} :
 	GObject.registerClass(
-	class extends PopupMenu.PopupBaseMenuItem
+	class TvPopupBase extends PopupMenu.PopupBaseMenuItem
 	{
 		_init()
 		{
@@ -85,7 +85,7 @@ var PopupBase = (IS_OLD_SHELL) ?
 		}
 	});
 
-PopupBase.prototype._onButtonReleaseEvent = function(actor, event)
+TvPopupBase.prototype._onButtonReleaseEvent = function(actor, event)
 {
 	return Clutter.EVENT_STOP;
 }
