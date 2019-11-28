@@ -60,7 +60,7 @@ function updateWebConfig(value, type)
 	webConfig[value] = Settings['get_' + type]('cec-web-api-' + value);
 
 	if(!webConfig.ip)
-		webConfig.ip = '192.168.0.1';
+		webConfig.ip = '127.0.0.1';
 }
 
 function init()
@@ -106,6 +106,7 @@ function disable()
 
 	/* Disconnect signals from settings */
 	signals.forEach(signal => Settings.disconnect(signal));
+	signals = null;
 
 	/* Remove TV Remote */
 	remote.destroy();
