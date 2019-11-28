@@ -15,10 +15,6 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 		this.menuDevices = [];
 		this.activeDevId = 'dev0';
 
-		this.tempMenuItem = new PopupMenu.PopupMenuItem(_("No devices"));
-		this.tempMenuItem.setSensitive(false);
-		this.menu.addMenuItem(this.tempMenuItem);
-
 		let callback = () =>
 		{
 			if(this.hasOwnProperty('actor'))
@@ -40,6 +36,15 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 			this.connect('notify::hover', callback);
 		}
 
+		this.addTempItem = () =>
+		{
+			this.tempMenuItem = new PopupMenu.PopupMenuItem(_("No devices"));
+			this.tempMenuItem.setSensitive(false);
+			this.menu.addMenuItem(this.tempMenuItem);
+		}
+
+		this.addTempItem();
+
 		this.updateActiveDev = (source, event) =>
 		{
 			if(
@@ -59,7 +64,9 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 
 		this.updateList = (listObj) =>
 		{
-			Object.keys(listObj).forEach(key =>
+			let devList = Object.keys(listObj);
+
+			devList.forEach(key =>
 			{
 				if(
 					key.startsWith('dev')
@@ -86,6 +93,12 @@ var DevicesSubMenu = class extends PopupMenu.PopupSubMenuMenuItem
 			{
 				this.tempMenuItem.destroy();
 				this.tempMenuItem = null;
+			}
+			else if(!this.tempMenuItem && devList.length === 0)
+			{
+				this.menuDevices.forEach(menuDevice => menuDevice.destroy());
+				this.menuDevices = [];
+				this.addTempItem();
 			}
 		}
 
